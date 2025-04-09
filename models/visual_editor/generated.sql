@@ -24,10 +24,16 @@ WITH raw_orders AS (
       TAX_PAID_CENTS / 100
     ) > 2 THEN 'high tax' ELSE 'normal tax' END AS TAX_CATEGORY
   FROM raw_orders
-), generated AS (
+), filter_1 AS (
   SELECT
     *
   FROM formula_1
+  WHERE
+    TAX_PAID > '10'
+), generated AS (
+  SELECT
+    *
+  FROM filter_1
 )
 SELECT
   *
