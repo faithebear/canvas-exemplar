@@ -58,7 +58,11 @@ WITH stg_orders AS (
     *,
     ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY ordered_at ASC) AS customer_order_number
   FROM formula_2
+), orders_sql AS (
+  SELECT
+    *
+  FROM formula_3
 )
 SELECT
   *
-FROM formula_3
+FROM orders_sql
